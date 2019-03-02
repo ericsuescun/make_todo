@@ -1,6 +1,7 @@
 require 'sinatra'
 require "make_todo"
 
+
 get '/' do
 
 	@allTasks = Tarea.all
@@ -26,12 +27,26 @@ post '/' do
 	redirect to('/')
 end
 
+post '/checkTask/' do
+	
+	Tarea.update(params[:n])
 
-# get '/' do
-# 	"Hola"
-# 	erb :forma
-# end
+	redirect to('/')
+end
 
-# post '/' do
-# 	"¡Hola #{params[:nombre]}"
-# end
+post '/deleteTask/' do
+	
+	Tarea.destroy(params[:n])
+
+	redirect to('/')
+end
+
+post '/findTask/' do
+	
+	erb :found
+
+	# redirect to('/')
+end
+
+
+

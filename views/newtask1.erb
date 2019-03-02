@@ -1,0 +1,46 @@
+<h1>Gimme a task to do!</h1>
+<form action="/" method="post">
+  <input type="text" name="task">
+  <input type="submit" value="Do it!">
+</form>
+
+<br>
+<br>
+<br>
+<h2>Task list TO DO:</h2>
+
+<form action=<%= "/checkTask/?var=#{i["id"]}" %> method="post">
+	<ul class="list-group">
+		<% var = Tarea.all %>
+		<% var.each_with_index do |i, j| %>
+		<li class="list-group-item">
+			<div class="form-check">
+
+
+				<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" <%= i["done"] ? "checked" : nil %> >
+				<label class="form-check-label" for="defaultCheck1">
+					<% if i["done"] == true %>
+					<%= "#{i["title"]} #{i["done"]} Completada" %>
+					<% else %>
+					<%= "#{i["title"]} #{i["done"]} No completada" %>
+					<% end %>
+				</label>
+				
+
+			</div>
+		</li>
+		<% end %>
+	</ul>
+</form>
+
+
+
+
+
+
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+  <label class="form-check-label" for="defaultCheck2">
+    Disabled checkbox
+  </label>
+</div>

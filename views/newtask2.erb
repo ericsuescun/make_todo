@@ -1,0 +1,26 @@
+<h1>Gimme a task to do!</h1>
+<form action="/" method="post">
+	<input type="text" name="task">
+	<input type="submit" value="Do it!">
+</form>
+
+<br>
+<br>
+<br>
+<h2>Task list TO DO:</h2>
+
+
+<ul class="list-group">
+	<% var = Tarea.all %>
+	<% var.each_with_index do |i, j| %>
+	<li class="list-group-item <%= i["done"] ? "list-group-item-success" : "list-group-item-primary" %>">
+		
+		<%= "#{i["title"]} #{i["done"]} " %>
+
+		<form action=<%= "/checkTask/?n=#{i["id"]}" %> method="post">
+			<input class="form-check-input" type="submit" value="Done!">
+		</form>
+
+	</li>
+	<% end %>
+</ul>

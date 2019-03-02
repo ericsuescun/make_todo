@@ -1,11 +1,21 @@
+<% var = Tarea.all %>
+
+<% found = [] %>
+
+<% var.each do |task| %>
+	<% if task["title"].downcase.include? params[:look].downcase %>
+		<% found << task %>
+	<% end %>
+<% end %>
+
+
 <div class="container container d-flex flex-column">
 	<div class="row justify-content-center">
 
 		<div class="col-8">
 			<h2>Task list TO DO:</h2>
 			<ul class="list-group">
-				<% var = Tarea.all %>
-				<% var.each_with_index do |i, j| %>
+				<% found.each_with_index do |i, j| %>
 				<li class="list-group-item <%= i["done"] ? "list-group-item-success" : "list-group-item-primary" %>">
 
 					<div class="container">
@@ -32,29 +42,9 @@
 				</li>
 				<% end %>
 			</ul>
-		</div>
-		<div class="col-4 d-flex flex-column">
-			<div class="row">
-				<h1>Gimme a task to do!</h1>
-				<form action="/" method="post">
-					<input class="col-8" type="text" name="task">
-					<input class="col-2 ml-3" type="submit" value="Do it!">
-				</form>
-				<div class="alert alert-primary mt-3" role="alert">
-					Write and Hit Do it! while is not done yet!
-				</div>
-				<div class="alert alert-success" role="alert">
-					Hit DONE! If you nailed it!
-				</div>
-				<div class="alert alert-secondary" role="alert">
-					Hit Take it off! if you wanna TAKE IT OFF!
-				</div>
-			</div>
-			<div class="row">
-				<h1>Find it here!</h1>
-				<form action="/findTask/" method="post">
-					<input class="col-8" type="text" name="look">
-					<input class="col-2 ml-3" type="submit" value="Bring it!">
+			<div class="col-2">
+				<form action="/" method="get" id="didit">
+					<input class="form-check-input align-middle" type="submit" value="Take me back!">
 				</form>
 			</div>
 		</div>
