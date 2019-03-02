@@ -42,7 +42,16 @@ post '/deleteTask/' do
 end
 
 post '/findTask/' do
-	
+	var = Tarea.all
+
+	@found = []
+
+	var.each do |task|
+		if task["title"].downcase.include? params[:look].downcase
+			@found << task
+		end
+	end
+
 	erb :found
 
 	# redirect to('/')

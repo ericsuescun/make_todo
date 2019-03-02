@@ -4,8 +4,8 @@
 		<div class="col-8">
 			<h2>Task list TO DO:</h2>
 			<ul class="list-group">
-				<% var = Tarea.all %>
-				<% var.each_with_index do |i, j| %>
+				<% @allTasks.sort_by! {|field| field["created_at"]} %>
+				<% @allTasks.each_with_index do |i, j| %>
 				<li class="list-group-item <%= i["done"] ? "list-group-item-success" : "list-group-item-primary" %>">
 
 					<div class="container">
@@ -13,6 +13,7 @@
 
 							<div class="col-8">
 								<h5><%= "#{i["title"]}" %></h5>
+								<p><%= "Creada el: #{i["created_at"]}" %></p>
 							</div>
 
 							<div class="col-2">

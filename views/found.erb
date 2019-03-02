@@ -1,21 +1,10 @@
-<% var = Tarea.all %>
-
-<% found = [] %>
-
-<% var.each do |task| %>
-	<% if task["title"].downcase.include? params[:look].downcase %>
-		<% found << task %>
-	<% end %>
-<% end %>
-
-
 <div class="container container d-flex flex-column">
 	<div class="row justify-content-center">
 
 		<div class="col-8">
 			<h2>Task list TO DO:</h2>
 			<ul class="list-group">
-				<% found.each_with_index do |i, j| %>
+				<% @found.each_with_index do |i, j| %>
 				<li class="list-group-item <%= i["done"] ? "list-group-item-success" : "list-group-item-primary" %>">
 
 					<div class="container">
